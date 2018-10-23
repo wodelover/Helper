@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       -= gui
-QT      += network
+QT += network
 
 TARGET = HttpCom
 TEMPLATE = lib
