@@ -1,2 +1,6 @@
-<!DOCTYPE RCC>
-<RCC version="1.0"/>
+<RCC>
+    <qresource prefix="/">
+        <file>Font/fontawesome-webfont.ttf</file>
+        <file>Font/STXIHEI.ttf</file>
+    </qresource>
+</RCC>
