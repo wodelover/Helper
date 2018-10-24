@@ -19,6 +19,7 @@
 #include <QQmlApplicationEngine>
 #include <QDir>
 
+// 将最后生成翻译好的qm文件放在运行目录下的LanguagePacket文件夹中
 const QString packet_path = "/LanguagePacket/";
 
 const QString zh_CN_path = "zh_CN.qm";
@@ -51,7 +52,7 @@ class LANGUAGETRANSLATORSHARED_EXPORT LanguageTranslator: public QObject
     Q_OBJECT
 public:
     Q_ENUMS(LanguageType)
-    enum LanguageType{
+    enum LanguageType{ // 注意,在qml中无法使用枚举，需要指定具体索引，暂时无法解决
         ZH_CN,//中文(中国)
         ZH_HK,//中文(台湾)
         EN_US,//英文(美国)
@@ -68,7 +69,23 @@ public:
         TH_TH,//泰文(泰国)
         UK_UA //乌克兰文(乌克兰)
     };
-    LanguageTranslator(QGuiApplication& app, QQmlApplicationEngine &engine);
+    static LanguageTranslator * getInstance();
+
+    /**
+     * @MethodName: initLanguageTranslator
+     * @ClassName: LanguageTranslator
+     * @Description: 初始化语言切换环境
+     * @Autor: ZhangHao kinderzhang@foxmail.com
+     * @date: 2018-10-24 16:28:24
+     * @Version: 1.0.0
+     * @update_autor
+     * @update_time
+     * @Parma: [QGuiApplication] app 主程序句柄
+     * @Parma: [QQmlApplicationEngine] engine QML引擎
+     * @Return: [void]
+    **/
+    Q_INVOKABLE void initLanguageTranslator(QGuiApplication& app, QQmlApplicationEngine &engine);
+
     /**
      * @MethodName: setLanguage
      * @ClassName: LanguageTranslator
@@ -96,6 +113,8 @@ public:
     **/
     Q_INVOKABLE QString getAppPath()const;
 private:
+    LanguageTranslator();
+    static LanguageTranslator * instance;
     QGuiApplication *m_app;
     QQmlApplicationEngine *m_engine;
     QString m_appPath;

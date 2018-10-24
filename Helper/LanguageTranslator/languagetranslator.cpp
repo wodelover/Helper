@@ -11,8 +11,22 @@
 /*************************************************************************/
 #include "languagetranslator.h"
 #include <QDebug>
+LanguageTranslator * LanguageTranslator::instance =nullptr;
 
-LanguageTranslator::LanguageTranslator(QGuiApplication &app, QQmlApplicationEngine &engine)
+LanguageTranslator::LanguageTranslator()
+{
+
+}
+
+LanguageTranslator *LanguageTranslator::getInstance()
+{
+    if(instance==nullptr){
+        instance = new LanguageTranslator;
+    }
+    return instance;
+}
+
+void LanguageTranslator::initLanguageTranslator(QGuiApplication &app, QQmlApplicationEngine &engine)
 {
     m_app = &app;
     m_engine = &engine;
@@ -46,13 +60,16 @@ void LanguageTranslator::setLanguage(LanguageTranslator::LanguageType languageTy
     case  UK_UA: flag = translator.load(packetPath + uk_UA_path); break;
     }
     if(flag){
+        if(m_app==nullptr){
+            qDebug()<<__FILE__<<"line"<<__LINE__- 1 <<"Please call initLanguageTranslator() function to set Envirment.";
+        }
         if(m_app->installTranslator(&translator)){
             m_engine->retranslate();
         }else{
             qDebug()<<__FILE__<<"line"<<__LINE__- 4 <<":Install Translator false,try again.";
         }
-
     }else{
+        qDebug()<<packetPath + en_US_path;
         qDebug()<<__FILE__<<" line "<<__LINE__- 8 <<": load language packet failed,language packet is exists in your path?";
     }
 
