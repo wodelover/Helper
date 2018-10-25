@@ -1,8 +1,18 @@
 #include "processini.h"
 
+ProcessIni::ProcessIni()
+{
+
+}
+
+ProcessIni::~ProcessIni()
+{
+
+}
+
 bool ProcessIni::writeIni(QString content, QString key, QVariant data)
 {
-    QSettings *settings = new QSettings(IniFilePath,QSettings::IniFormat);
+    QSettings *settings = new QSettings(m_IniFilePath,QSettings::IniFormat);
     if(nullptr==settings){
         return false;
     }
@@ -15,7 +25,7 @@ bool ProcessIni::writeIni(QString content, QString key, QVariant data)
 
 QVariant ProcessIni::readIni(QString content, QString key)
 {
-    QSettings *settings = new QSettings(IniFilePath,QSettings::IniFormat);
+    QSettings *settings = new QSettings(m_IniFilePath,QSettings::IniFormat);
     if(nullptr==settings){
         return 0;
     }
@@ -28,7 +38,7 @@ QVariant ProcessIni::readIni(QString content, QString key)
 
 QString ProcessIni::getIniFilePath()
 {
-    return IniFilePath;
+    return m_IniFilePath;
 }
 
 QString ProcessIni::encryptionData(const QByteArray &data, ProcessIni::EncryptionType type)

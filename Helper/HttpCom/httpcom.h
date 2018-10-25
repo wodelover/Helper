@@ -17,8 +17,7 @@
 #include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QUrl>
-
-class QByteArray;
+#include <QByteArray>
 
 /**
  * @Title: HttpCom
@@ -32,10 +31,10 @@ class QByteArray;
 */
 class HTTPCOMSHARED_EXPORT HttpCom : public QObject
 {
-    Q_OBJECT
+    Q_OBJECT //需要引用的模块中添加network模块，否则编译找不到文件
 public:
-    static HttpCom* getInstance();
-
+    HttpCom();
+    ~HttpCom();
     /**
      * @MethodName: sendDataToServerByPost
      * @ClassName: HttpCom
@@ -107,7 +106,9 @@ public:
      * @Parma: [QByteArray] 键值
      * @Return: [void]
     **/
-    Q_INVOKABLE void setrequestRawHeader(QByteArray key, QByteArray value);
+    Q_INVOKABLE void setRequestRawHeader(QByteArray key, QByteArray value);
+
+    Q_INVOKABLE void setRequestHeader(QNetworkRequest::KnownHeaders header,QVariant value);
 
 private slots:
     void requestFinished();
@@ -118,10 +119,8 @@ signals:
     void requestError(int errorCode);
 
 private:
-    HttpCom();
-    static HttpCom * instance;
-    QNetworkAccessManager m_manager;
-    QNetworkRequest m_request;
+    QNetworkAccessManager *m_manager;
+    QNetworkRequest *m_request;
     QNetworkReply *m_reply;
 };
 

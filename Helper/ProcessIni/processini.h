@@ -16,7 +16,6 @@
 #include <QVariant>
 #include <QByteArray>
 #include <QCryptographicHash>
-const QString IniFilePath = "./config.ini";
 
 /**
  * @ClassName: ProcessIni
@@ -29,7 +28,7 @@ const QString IniFilePath = "./config.ini";
 **/
 class PROCESSINISHARED_EXPORT ProcessIni
 {
-
+public:
     enum EncryptionType{
         Md4,
         Md5,
@@ -41,8 +40,8 @@ class PROCESSINISHARED_EXPORT ProcessIni
         Keccak_256,
         Keccak_512,
     };
-
-public:
+    ProcessIni();
+    ~ProcessIni();
     /**
      * @MethodName: writeIni
      * @ClassName: ProcessIni
@@ -57,7 +56,8 @@ public:
      * @Parma: [QVariant] data 键值
      * @Return: [bool] 写入状态
     **/
-    Q_INVOKABLE static bool writeIni(QString content,QString key,QVariant data);
+    Q_INVOKABLE bool writeIni(QString content,QString key,QVariant data);
+
     /**
      * @MethodName: readIni
      * @ClassName: ProcessIni
@@ -71,7 +71,8 @@ public:
      * @Parma: [QString] key 键名
      * @Return: [QVariant] 键值
     **/
-    Q_INVOKABLE static QVariant readIni(QString content,QString key);
+    Q_INVOKABLE QVariant readIni(QString content,QString key);
+
     /**
      * @MethodName: getIniFilePath
      * @ClassName: ProcessIni
@@ -83,7 +84,21 @@ public:
      * @update_time
      * @Return: [QString] 配置文件路径
     **/
-    Q_INVOKABLE static QString getIniFilePath();
+    Q_INVOKABLE QString getIniFilePath();
+
+    /**
+     * @MethodName: setIniFilePath
+     * @ClassName: ProcessIni
+     * @Description: 设置配置文件的路径
+     * @Autor: ZhangHao kinderzhang@foxmail.com
+     * @date: 2018-10-25 13:23:58
+     * @Version: 1.0.0
+     * @update_autor
+     * @update_time
+     * @Parma: [QString] path 配置文件路径
+     * @Return: [void]
+    **/
+    Q_INVOKABLE void setIniFilePath(QString path);
 
     /**
      * @Title: encryptionData
@@ -98,7 +113,7 @@ public:
      * @param [EncryptionType] type 加密方式
      * @return [QString] 加密后的文本
     */
-    Q_INVOKABLE static QString encryptionData(const QByteArray &data,EncryptionType type);
+    Q_INVOKABLE QString encryptionData(const QByteArray &data,EncryptionType type);
 
     /**
      * @Title: encryptionData
@@ -113,8 +128,9 @@ public:
      * @param [EncryptionType] type 加密方式
      * @return [QString] 加密后的文本
     */
-    Q_INVOKABLE static QString encryptionData(const QString &data,EncryptionType type);
-
+    Q_INVOKABLE QString encryptionData(const QString &data,EncryptionType type);
+private:
+    QString m_IniFilePath = "./config.ini";
 
 };
 
