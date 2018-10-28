@@ -11,26 +11,46 @@ ApplicationWindow {
     height: 480
     title: qsTr("Helper")
     flags:  Qt.FramelessWindowHint | Qt.Window
+
+    // 定义本模式下默认字体
+    property string defaultFontFamily: "STXIHEI"
+
+
     property int mainWindowX : 0 //用来存储主窗口x坐标
     property int mainWindowY : 0 //存储窗口y坐标
     property int xMouse : 0 //存储鼠标x坐标
     property int yMouse : 0 //存储鼠标y坐标
 
     MouseArea { //为窗口移动添加鼠标事件
-            anchors.fill: head
-            acceptedButtons: Qt.LeftButton //只处理鼠标左键
-            property point clickPos: "0,0"
-            onPressed: { //接收鼠标按下事件
-                    clickPos  = Qt.point(mouse.x,mouse.y)
-            }
-            onPositionChanged: { //鼠标按下后改变位置
-                    //鼠标偏移量
-                    var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
-                    //如果mainwindow继承自QWidget,用setPos
-                    mainWindow.setX(mainWindow.x+delta.x)
-                    mainWindow.setY(mainWindow.y+delta.y)
-            }
+        anchors.fill: head
+        acceptedButtons: Qt.LeftButton //只处理鼠标左键
+        property point clickPos: "0,0"
+        onPressed: { //接收鼠标按下事件
+            clickPos  = Qt.point(mouse.x,mouse.y)
         }
+        onPositionChanged: { //鼠标按下后改变位置
+            //鼠标偏移量
+            var delta = Qt.point(mouse.x-clickPos.x, mouse.y-clickPos.y)
+            //如果mainwindow继承自QWidget,用setPos
+            mainWindow.setX(mainWindow.x+delta.x)
+            mainWindow.setY(mainWindow.y+delta.y)
+        }
+    }
+
+
+    SwipeView {
+        id: swipeView
+        y: head.height
+        width: parent.width
+        height: parent.height - head.height
+        currentIndex: tabBar.currentIndex
+        MessageAreaPage{
+            itemWidth: mainWindow.width
+            itemHeight: 40
+        }
+        ImageAreaPage{}
+        ToolsAreaPage{}
+    }
 
     Rectangle {//重写标题栏
         id: head
@@ -73,16 +93,7 @@ ApplicationWindow {
         }
     }
 
-    SwipeView {
-        id: swipeView
-        y: head.height
-        width: parent.width
-        height: parent.height - head.height
-        currentIndex: tabBar.currentIndex
-        MessageAreaPage{}
-        ImageAreaPage{}
-        ToolsAreaPage{}
-    }
+
 
     footer: TabBar {
         id: tabBar
