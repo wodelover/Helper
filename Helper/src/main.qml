@@ -14,8 +14,8 @@ ApplicationWindow {
 
     // 定义本模式下默认字体
     property string defaultFontFamily: "STXIHEI"
-
-
+    property int buttonWidth: 45 //定义标题栏菜单按钮宽度
+    property int tittleMenuHeight: 30//定义菜单栏高度
     property int mainWindowX : 0 //用来存储主窗口x坐标
     property int mainWindowY : 0 //存储窗口y坐标
     property int xMouse : 0 //存储鼠标x坐标
@@ -46,7 +46,7 @@ ApplicationWindow {
         currentIndex: tabBar.currentIndex
         MessageAreaPage{
             itemWidth: mainWindow.width
-            itemHeight: 40
+            itemHeight: 45
         }
         ImageAreaPage{}
         ToolsAreaPage{}
@@ -56,24 +56,63 @@ ApplicationWindow {
         id: head
         color: "dimgray"
         width: parent.width
-        height: 30
-        Text {
+        height: tittleMenuHeight
+        Text { //系统图标
             id: proIcon
             x: 2
+            y: 2
             font.family: "FontAwesome"
             font.pointSize: 20
             color: "deepskyblue"
             text: "\uf015"
             verticalAlignment: Text.AlignHCenter
         }
-        Text {
+
+        Item{ //顶部菜单
             x: proIcon.width + 4
-            text: qsTr("Helper")
-            color: "white"
-            font.pointSize: 20
-            verticalAlignment: Text.AlignHCenter
+            width: parent.width - proIcon.width - miniButton.width - closeButton.width - 10
+            height: tittleMenuHeight
+
+            Row{
+                y: -5
+                spacing: 2
+                Button{ //消息
+                    flat: true // 隐藏外边框
+                    text: qsTr("消息")
+                    width: buttonWidth
+                    height: tittleMenuHeight + 10
+                    font.family: defaultFontFamily
+                    font.pointSize: 10
+                }
+                Button{ //图像
+                    flat: true // 隐藏外边框
+                    text: qsTr("图像")
+                    width: buttonWidth
+                    height: tittleMenuHeight + 10
+                    font.family: defaultFontFamily
+                    font.pointSize: 10
+                }
+                Button{ //设置
+                    flat: true // 隐藏外边框
+                    text: qsTr("设置")
+                    width: buttonWidth
+                    height: tittleMenuHeight + 10
+                    font.family: defaultFontFamily
+                    font.pointSize: 10
+                }
+                Button{ //帮助
+                    flat: true // 隐藏外边框
+                    text: qsTr("帮助")
+                    width: buttonWidth
+                    height: tittleMenuHeight + 10
+                    font.family: defaultFontFamily
+                    font.pointSize: 10
+                }
+            }
         }
-        Button{
+
+        Button{ // 最小化
+            id: miniButton
             y:parent.y - 10
             x:parent.width-width * 2 - 18
             width: 25
@@ -82,7 +121,8 @@ ApplicationWindow {
             text: "\uf068"
             onClicked: mainWindow.showMinimized()
         }
-        Button{
+        Button{// 关闭
+            id: closeButton
             y:parent.y - 10
             x:parent.width-width - 2
             width: 40

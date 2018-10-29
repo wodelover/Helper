@@ -8,7 +8,7 @@
 /*                  Copyright (C) ZhangHao All rights reserved                              */
 /***************************************************************************************************************/
 
-import QtQuick 2.0
+import QtQuick 2.7
 import QtQuick.Controls 2.2
 
 /**
@@ -39,63 +39,75 @@ Item {
     ListModel{//模型数据
         id: settingModel
         ListElement{
-            settingText: qsTr("设备连接")
+            settingText: qsTr("设备连接11111111111111111111111111111111122222222222222222222222223333333333R")
             childText: qsTr("蓝牙、WiFi、DLAN")
+            timeText: "下午5:10"
             readStatus: true
         }
         ListElement{
             settingText: qsTr("模式切换")
             childText: qsTr("经典、动感、传统")
+            timeText: "下午5:19"
             readStatus: true
         }
         ListElement{
             settingText: qsTr("显示调节")
             childText: qsTr("亮度、色调、环境")
+            timeText: "中午12:01"
             readStatus: false
         }
         ListElement{
             settingText: qsTr("语言切换")
             childText: qsTr("简体中文、English")
+            timeText: "早上8:18"
             readStatus: false
         }
         ListElement{
             settingText: qsTr("行车设置")
             childText: qsTr("超速提示、车门控制、时间")
+            timeText: "下午6:19"
             readStatus: false
         }
         ListElement{
             settingText: qsTr("系统信息")
             childText: qsTr("系统更新、系统版本")
+            timeText: "下午4:19"
             readStatus: false
         }
         ListElement{
             settingText: qsTr("设备连接")
             childText: qsTr("蓝牙、WiFi、DLAN")
+            timeText: "下午2:19"
             readStatus: false
         }
         ListElement{
             settingText: qsTr("模式切换")
             childText: qsTr("经典、动感、传统")
+            timeText: "昨天15:10"
             readStatus: false
         }
         ListElement{
             settingText: qsTr("显示调节")
             childText: qsTr("亮度、色调、环境")
+            timeText: "昨天13:19"
             readStatus: false
         }
         ListElement{
             settingText: qsTr("语言切换")
             childText: qsTr("简体中文、English")
+            timeText: "昨天5:19"
             readStatus: false
         }
         ListElement{
             settingText: qsTr("行车设置")
             childText: qsTr("超速提示、车门控制、时间")
+            timeText: "星期五"
             readStatus: false
         }
         ListElement{
             settingText: qsTr("系统信息")
             childText: qsTr("系统更新、系统版本")
+            timeText: "星期四"
             readStatus: false
         }
     }
@@ -105,36 +117,54 @@ Item {
             id: delegateItem
             width: itemWidth
             height: itemHeight
-            Text {//主设置项
+            Text {//消息标题
                 id: mainText
                 x: itemHeight * 0.1
-                y: itemHeight * 0.01
+                y: itemHeight * 0.2
+                width: itemWidth * 0.7
+                height: itemHeight * 0.38
                 text: settingText
-                color: "white"
+                elide: Text.ElideRight
+                smooth: true
+                color: delegateItem.ListView.isCurrentItem ? "lightpink" : "white"
                 font.bold: true
-                font.pointSize: itemHeight * 0.45
+                font.pointSize: itemHeight * 0.38
                 font.family: defaultFontFamily
                 verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
+                horizontalAlignment: Text.AlignLeft
             }
-            Text {//子项显示信息
+            Text {//消息预览内容
                 x: itemHeight * 0.1
-                y: itemHeight * 0.65
+                y: itemHeight * 0.67
+                width: itemWidth * 0.7
                 text: childText
-                color: "white"
-                opacity: 0.7
+                color: delegateItem.ListView.isCurrentItem ? "lightpink" : "snow"
+                smooth: true
                 font.pointSize: itemHeight * 0.2
                 font.family: defaultFontFamily
                 verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
+                horizontalAlignment: Text.AlignLeft
             }
-            Text {//信息提示指示区域
+            Text {//消息时间显示
+                x: itemWidth * 0.75
+                y: itemHeight / 2
+                width: itemWidth * 0.7
+                text: timeText
+                color: delegateItem.ListView.isCurrentItem ? "lightpink" : "snow"
+                smooth: true
+                font.pointSize: itemHeight * 0.25
+                font.family: defaultFontFamily
+                verticalAlignment: Text.AlignVCenter
+                horizontalAlignment: Text.AlignLeft
+            }
+            Text {//新信息提示指示区域
                 x: parent.width - width - 15
                 y: (itemHeight - height) / 2
                 width: itemHeight * 0.3
                 height: itemHeight * 0.3
                 font.pointSize: itemHeight * 0.3
                 color: "red"
+                smooth: true
                 text: "\uf0eb"
                 visible: readStatus
                 font.family: "FontAwesome"
@@ -177,8 +207,8 @@ Item {
             delegate: settingDelegate
             highlight: settingHightLight
             highlightFollowsCurrentItem: true
-            highlightMoveDuration: 300 // 设置移动选中项的过渡时间
-            //highlightRangeMode: ListView.ApplyRange//设置内容自动滚动的方式
+            highlightMoveDuration: 80 // 设置移动选中项的过渡时间
+            highlightRangeMode: ListView.NoHighlightRange//设置内容自动滚动的方式
         }
     }
 }
