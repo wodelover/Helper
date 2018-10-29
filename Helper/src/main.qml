@@ -54,7 +54,7 @@ ApplicationWindow {
 
     Rectangle {//重写标题栏
         id: head
-        color: "lightslategrey"
+        color: "dimgray"
         width: parent.width
         height: 30
         Text {
@@ -62,7 +62,7 @@ ApplicationWindow {
             x: 2
             font.family: "FontAwesome"
             font.pointSize: 20
-            color: "white"
+            color: "deepskyblue"
             text: "\uf015"
             verticalAlignment: Text.AlignHCenter
         }
@@ -74,19 +74,19 @@ ApplicationWindow {
             verticalAlignment: Text.AlignHCenter
         }
         Button{
-            y:parent.y - 5
-            x:parent.width-width * 2 - 2
-            width: 40
-            height: 40
+            y:parent.y - 10
+            x:parent.width-width * 2 - 18
+            width: 25
+            height: 35
             font.family: "FontAwesome"
             text: "\uf068"
             onClicked: mainWindow.showMinimized()
         }
         Button{
-            y:parent.y - 5
+            y:parent.y - 10
             x:parent.width-width - 2
             width: 40
-            height: 40
+            height: 35
             font.family: "FontAwesome"
             text: "\uf00d"
             onClicked: Qt.quit()

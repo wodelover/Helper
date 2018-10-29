@@ -102,9 +102,11 @@ Item {
     Component{//单个子项组件
         id: settingDelegate
         Item{
+            id: delegateItem
             width: itemWidth
             height: itemHeight
             Text {//主设置项
+                id: mainText
                 x: itemHeight * 0.1
                 y: itemHeight * 0.01
                 text: settingText
@@ -126,7 +128,7 @@ Item {
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
             }
-            Text {
+            Text {//信息提示指示区域
                 x: parent.width - width - 15
                 y: (itemHeight - height) / 2
                 width: itemHeight * 0.3
@@ -139,6 +141,15 @@ Item {
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
             }
+            MouseArea{
+                anchors.fill: parent
+                onDoubleClicked: {
+                    console.log("aa")
+                }
+                onClicked: {
+                    delegateItem.ListView.view.currentIndex = index
+                }
+            }
         }
     }
 
@@ -150,7 +161,7 @@ Item {
             height: itemHeight
             radius: 10
             color: "white"
-            opacity: 0.3
+            opacity: 0.1
         }
     }
 
@@ -166,8 +177,8 @@ Item {
             delegate: settingDelegate
             highlight: settingHightLight
             highlightFollowsCurrentItem: true
-            focus: true
-            highlightRangeMode: ListView.ApplyRange
+            highlightMoveDuration: 300 // 设置移动选中项的过渡时间
+            //highlightRangeMode: ListView.ApplyRange//设置内容自动滚动的方式
         }
     }
 }
