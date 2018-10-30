@@ -1,7 +1,7 @@
 TEMPLATE = subdirs
 
 SUBDIRS += \
-    src \
+    Helper \
     Face \
     Logger \
     ProcessIni \
