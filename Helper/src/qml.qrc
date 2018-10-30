@@ -6,5 +6,6 @@
         <file>MessageAreaPage/MessageAreaPage.qml</file>
         <file>ImageAreaPage/ImageAreaPage.qml</file>
         <file>ToolsAreaPage/ToolsAreaPage.qml</file>
+        <file>ImageAreaPage/ImagetoolsMenu.qml</file>
     </qresource>
 </RCC>

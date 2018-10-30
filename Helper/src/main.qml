@@ -43,7 +43,7 @@ ApplicationWindow {
         y: head.height
         width: parent.width
         height: parent.height - head.height
-        currentIndex: tabBar.currentIndex
+        currentIndex: 1//tabBar.currentIndex
         MessageAreaPage{
             itemWidth: mainWindow.width
             itemHeight: 45

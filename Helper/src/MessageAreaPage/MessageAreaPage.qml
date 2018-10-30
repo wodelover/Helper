@@ -40,7 +40,7 @@ Item {
         id: settingModel
         ListElement{
             settingText: qsTr("设备连接11111111111111111111111111111111122222222222222222222222223333333333R")
-            childText: qsTr("蓝牙、WiFi、DLAN")
+            childText: qsTr("蓝牙、WiFi、DLAN0000000000000000000000000000000000000000000000000000000000")
             timeText: "下午5:10"
             readStatus: true
         }
@@ -140,6 +140,7 @@ Item {
                 text: childText
                 color: delegateItem.ListView.isCurrentItem ? "lightpink" : "snow"
                 smooth: true
+                elide: Text.ElideRight
                 font.pointSize: itemHeight * 0.2
                 font.family: defaultFontFamily
                 verticalAlignment: Text.AlignVCenter
