@@ -52,9 +52,9 @@ Item {
 
                 if(component.status === Component.Ready && !submenu.length){
                     var imageToolBar = component.createObject(tools)
-                    imageToolBar.buttonWidth = 50
-                    imageToolBar.buttonHeight = 60
-                    imageToolBar.buttonTextSize = 40
+                    imageToolBar.buttonWidth = tools.width
+                    imageToolBar.buttonHeight = tools.height
+                    imageToolBar.fontSize = tools.font.pointSize / 2
                     submenu.push(imageToolBar)
                     tools.text = "\uf056"
                     tools.opacity = 1

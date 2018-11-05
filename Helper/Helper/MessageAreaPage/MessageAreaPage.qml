@@ -42,73 +42,61 @@ Item {
             settingText: qsTr("设备连接11111111111111111111111111111111122222222222222222222222223333333333R")
             childText: qsTr("蓝牙、WiFi、DLAN0000000000000000000000000000000000000000000000000000000000")
             timeText: "下午5:10"
-            readStatus: true
         }
         ListElement{
             settingText: qsTr("模式切换")
             childText: qsTr("经典、动感、传统")
             timeText: "下午5:19"
-            readStatus: true
         }
         ListElement{
             settingText: qsTr("显示调节")
             childText: qsTr("亮度、色调、环境")
             timeText: "中午12:01"
-            readStatus: false
         }
         ListElement{
             settingText: qsTr("语言切换")
             childText: qsTr("简体中文、English")
             timeText: "早上8:18"
-            readStatus: false
         }
         ListElement{
             settingText: qsTr("行车设置")
             childText: qsTr("超速提示、车门控制、时间")
             timeText: "下午6:19"
-            readStatus: false
         }
         ListElement{
             settingText: qsTr("系统信息")
             childText: qsTr("系统更新、系统版本")
             timeText: "下午4:19"
-            readStatus: false
         }
         ListElement{
             settingText: qsTr("设备连接")
             childText: qsTr("蓝牙、WiFi、DLAN")
             timeText: "下午2:19"
-            readStatus: false
         }
         ListElement{
             settingText: qsTr("模式切换")
             childText: qsTr("经典、动感、传统")
             timeText: "昨天15:10"
-            readStatus: false
         }
         ListElement{
             settingText: qsTr("显示调节")
             childText: qsTr("亮度、色调、环境")
             timeText: "昨天13:19"
-            readStatus: false
         }
         ListElement{
             settingText: qsTr("语言切换")
             childText: qsTr("简体中文、English")
             timeText: "昨天5:19"
-            readStatus: false
         }
         ListElement{
             settingText: qsTr("行车设置")
             childText: qsTr("超速提示、车门控制、时间")
             timeText: "星期五"
-            readStatus: false
         }
         ListElement{
             settingText: qsTr("系统信息")
             childText: qsTr("系统更新、系统版本")
             timeText: "星期四"
-            readStatus: false
         }
     }
     Component{//单个子项组件
@@ -117,6 +105,7 @@ Item {
             id: delegateItem
             width: itemWidth
             height: itemHeight
+            property bool isReaded: false // 数据绑定到每一项是否被点击阅读
             Text {//消息标题
                 id: mainText
                 x: itemHeight * 0.1
@@ -158,29 +147,33 @@ Item {
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignLeft
             }
-            Text {//新信息提示指示区域
-                x: parent.width - width - 15
-                y: (itemHeight - height) / 2
-                width: itemHeight * 0.3
-                height: itemHeight * 0.3
-                font.pointSize: itemHeight * 0.3
-                color: "red"
-                smooth: true
-                text: "\uf0eb"
-                visible: readStatus
-                font.family: "FontAwesome"
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-            }
-            MouseArea{
+            MouseArea{ //单独一项鼠标处理事件
                 anchors.fill: parent
                 onDoubleClicked: {
-                    console.log("aa")
+                    console.log(index)
                 }
                 onClicked: {
                     delegateItem.ListView.view.currentIndex = index
                 }
             }
+            Button {//新信息提示指示区域
+                x: parent.width - width - 15
+                y: (itemHeight - height) / 2
+                width: 25//itemHeight * 0.4
+                height: 40//itemHeight * 0.4
+                font.pointSize: itemHeight * 0.3
+                smooth: true
+                flat: true
+                highlighted: true
+                text: "\uf0eb"
+                visible: !isReaded
+                font.family: "FontAwesome"
+                onClicked: {
+                    isReaded = true
+                    delegateItem.ListView.view.currentIndex = index
+                }
+            }
+
         }
     }
 
@@ -212,4 +205,5 @@ Item {
             highlightRangeMode: ListView.NoHighlightRange//设置内容自动滚动的方式
         }
     }
+
 }

@@ -22,25 +22,125 @@ import QtQuick.Controls 2.2
 **/
 Item {
     // 下列属性需要外部设置
-    property int buttonWidth: 0//50
-    property int buttonHeight: 0//60
-    property int buttonTextSize: 0//40
+    property int buttonWidth: 0//40 按钮的宽度
+    property int buttonHeight: 0//40 按钮的高度
+    property int fontSize: 10 //40按钮字体大小
+    Row{
+        id: toolRow
+        x: -parent.width - buttonWidth * 4
+        layoutDirection: Qt.RightToLeft
+        Button{//暂停按钮
+            width: buttonWidth
+            height: buttonHeight
+            flat: true // 隐藏外边框
+            text: "\uf04b"
+            font.family: "FontAwesome"
+            highlighted: true
+            font.pointSize: fontSize
+            opacity: 0.5
+            property bool selected: true
+            onClicked: {
+                console.log("Play/Pause")
+                if(selected){
+                    opacity = 1
+                    selected =!selected
+                }else{
+                    opacity = 0.5
+                    selected =!selected
+                }
+            }
+        }
+        Button{//截图按钮
+            width: buttonWidth
+            height: buttonHeight
+            flat: true // 隐藏外边框
+            text: "\uf03e"
+            font.family: "FontAwesome"
+            highlighted: true
+            opacity: 0.5
+            font.pointSize: fontSize
+            property bool selected: true
+            onClicked: {
+                console.log("GrabImage")
+                if(selected){
+                    opacity = 1
+                    selected =!selected
+                }else{
+                    opacity = 0.5
+                    selected =!selected
+                }
+            }
+        }
 
-    x: -parent.width - 5
+        Item{//美颜区域
+            width: buttonWidth
+            height: buttonHeight
+            MouseArea{
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered: if(beautyButton.selected) beautySlider.visible = true
+                Button{//美颜按钮
+                    id: beautyButton
+                    anchors.fill: parent
+                    flat: true // 隐藏外边框
+                    text: "\uf2be"
+                    font.family: "FontAwesome"
+                    highlighted: true
+                    opacity: 0.5
+                    font.pointSize: fontSize
+                    property bool selected: false
+                    onClicked: {
+                        selected =!selected
+                        if(selected){
+                            opacity = 1
+                            beautySlider.visible = true
+                        }else{
+                            opacity = 0.5
+                            beautySlider.visible = false
+                        }
+                    }
+                    MouseArea{
+                        id: mouse
+                        x:beautySlider.x
+                        y:beautySlider.y
+                        width: beautySlider.width
+                        height: beautySlider.height
+                        hoverEnabled: true
+                        onExited: beautySlider.visible = false
+                        Slider{
+                            id: beautySlider
+                            x: (-width + parent.width) / 2
+                            y: parent.height - 10
+                            from: 0
+                            to: 100
+                            visible: false
+                            onValueChanged: console.log("beauty:"+value)
+                        }
+                    }
+                }
+            }
+        }
 
-    Rectangle{
-        width: buttonWidth
-        height: buttonHeight
-        color: "red"
+        Button{//亮度按钮
+            width: buttonWidth
+            height: buttonHeight
+            flat: true // 隐藏外边框
+            text: "\uf185"
+            font.family: "FontAwesome"
+            highlighted: true
+            opacity: 0.5
+            font.pointSize: fontSize
+            property bool selected: true
+            onClicked: {
+                if(selected){
+                    opacity = 1
+                    selected =!selected
+                }else{
+                    opacity = 0.5
+                    selected =!selected
+                }
+            }
+        }
     }
-
-//    Pane{
-//        Row{
-//            spacing: 2
-//            Button{//美颜
-
-//            }
-//        }
-//    }
 
 }
