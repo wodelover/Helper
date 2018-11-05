@@ -76,12 +76,25 @@ Item {
             width: buttonWidth
             height: buttonHeight
             MouseArea{
-                anchors.fill: parent
+                id: mainMouseArea
+                width: buttonWidth
+                height: buttonHeight
                 hoverEnabled: true
-                onEntered: if(beautyButton.selected) beautySlider.visible = true
+                property bool enter: false
+                onEntered: {
+                    enter = true
+                    if(beautyButton.selected){
+                        beautySlider.visible = true
+                    }
+                }
+                onExited: {
+                    beautySlider.visible = false
+                }
+
                 Button{//美颜按钮
                     id: beautyButton
-                    anchors.fill: parent
+                    width: buttonWidth
+                    height: buttonHeight
                     flat: true // 隐藏外边框
                     text: "\uf2be"
                     font.family: "FontAwesome"
@@ -99,24 +112,30 @@ Item {
                             beautySlider.visible = false
                         }
                     }
-                    MouseArea{
-                        id: mouse
-                        x:beautySlider.x
-                        y:beautySlider.y
-                        width: beautySlider.width
-                        height: beautySlider.height
-                        hoverEnabled: true
-                        onExited: beautySlider.visible = false
-                        Slider{
-                            id: beautySlider
-                            x: (-width + parent.width) / 2
-                            y: parent.height - 10
-                            from: 0
-                            to: 100
-                            visible: false
-                            onValueChanged: console.log("beauty:"+value)
-                        }
+                }
+            }
+            MouseArea{
+                x: (-width + beautyButton.width)/2
+                y: beautyButton.height
+                width: beautySlider.width
+                height: beautySlider.height
+                hoverEnabled: true
+                onExited: {
+                    beautySlider.visible = false
+                    mainMouseArea.enter = false
+                }
+                onEntered: {
+                    if(mainMouseArea.enter){
+                        beautySlider.visible = true
                     }
+                }
+                Slider{
+                    id: beautySlider
+                    anchors.fill: parent
+                    from: 0
+                    to: 100
+                    visible: false
+                    onValueChanged: console.log("beauty:"+value)
                 }
             }
         }
