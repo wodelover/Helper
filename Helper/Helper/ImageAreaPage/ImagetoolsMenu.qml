@@ -50,27 +50,6 @@ Item {
                 }
             }
         }
-        Button{//截图按钮
-            width: buttonWidth
-            height: buttonHeight
-            flat: true // 隐藏外边框
-            text: "\uf03e"
-            font.family: "FontAwesome"
-            highlighted: true
-            opacity: 0.5
-            font.pointSize: fontSize
-            property bool selected: true
-            onClicked: {
-                console.log("GrabImage")
-                if(selected){
-                    opacity = 1
-                    selected =!selected
-                }else{
-                    opacity = 0.5
-                    selected =!selected
-                }
-            }
-        }
 
         Item{//美颜区域
             width: buttonWidth
@@ -80,9 +59,9 @@ Item {
                 width: buttonWidth
                 height: buttonHeight
                 hoverEnabled: true
-                property bool enter: false
+                property bool beautyEnter: false
                 onEntered: {
-                    enter = true
+                    beautyEnter = true
                     if(beautyButton.selected){
                         beautySlider.visible = true
                     }
@@ -122,10 +101,10 @@ Item {
                 hoverEnabled: true
                 onExited: {
                     beautySlider.visible = false
-                    mainMouseArea.enter = false
+                    mainMouseArea.beautyEnter = false
                 }
                 onEntered: {
-                    if(mainMouseArea.enter){
+                    if(mainMouseArea.beautyEnter&&beautyButton.selected){
                         beautySlider.visible = true
                     }
                 }
@@ -140,17 +119,18 @@ Item {
             }
         }
 
-        Button{//亮度按钮
+        Button{//截图按钮
             width: buttonWidth
             height: buttonHeight
             flat: true // 隐藏外边框
-            text: "\uf185"
+            text: "\uf03e"
             font.family: "FontAwesome"
             highlighted: true
             opacity: 0.5
             font.pointSize: fontSize
             property bool selected: true
             onClicked: {
+                console.log("GrabImage")
                 if(selected){
                     opacity = 1
                     selected =!selected
@@ -160,6 +140,73 @@ Item {
                 }
             }
         }
-    }
 
+        Item{//亮度区域
+            width: buttonWidth
+            height: buttonHeight
+            MouseArea{
+                id: brightlessArea
+                width: buttonWidth
+                height: buttonHeight
+                hoverEnabled: true
+                property bool brightlessEnter: false
+                onEntered: {
+                    brightlessEnter = true
+                    if(brightlessButton.selected){
+                        brightlessSlider.visible = true
+                    }
+                }
+                onExited: {
+                    brightlessSlider.visible = false
+                }
+
+                Button{//美颜按钮
+                    id: brightlessButton
+                    width: buttonWidth
+                    height: buttonHeight
+                    flat: true // 隐藏外边框
+                    text: "\uf185"
+                    font.family: "FontAwesome"
+                    highlighted: true
+                    opacity: 0.5
+                    font.pointSize: fontSize
+                    property bool selected: false
+                    onClicked: {
+                        selected =!selected
+                        if(selected){
+                            opacity = 1
+                            brightlessSlider.visible = true
+                        }else{
+                            opacity = 0.5
+                            brightlessSlider.visible = false
+                        }
+                    }
+                }
+            }
+            MouseArea{
+                x: (-width + brightlessButton.width)/2
+                y: brightlessButton.height
+                width: brightlessSlider.width
+                height: brightlessSlider.height
+                hoverEnabled: true
+                onExited: {
+                    brightlessSlider.visible = false
+                    brightlessArea.brightlessEnter = false
+                }
+                onEntered: {
+                    if(brightlessArea.brightlessEnter&&brightlessButton.selected){
+                        brightlessSlider.visible = true
+                    }
+                }
+                Slider{
+                    id: brightlessSlider
+                    anchors.fill: parent
+                    from: 0
+                    to: 100
+                    visible: false
+                    onValueChanged: console.log("brightless:"+value)
+                }
+            }
+        }
+    }
 }
