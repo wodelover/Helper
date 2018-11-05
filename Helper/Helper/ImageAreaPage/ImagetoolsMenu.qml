@@ -29,27 +29,6 @@ Item {
         id: toolRow
         x: -parent.width - buttonWidth * 4
         layoutDirection: Qt.RightToLeft
-        Button{//暂停按钮
-            width: buttonWidth
-            height: buttonHeight
-            flat: true // 隐藏外边框
-            text: "\uf04b"
-            font.family: "FontAwesome"
-            highlighted: true
-            font.pointSize: fontSize
-            opacity: 0.5
-            property bool selected: true
-            onClicked: {
-                console.log("Play/Pause")
-                if(selected){
-                    opacity = 1
-                    selected =!selected
-                }else{
-                    opacity = 0.5
-                    selected =!selected
-                }
-            }
-        }
 
         Item{//美颜区域
             width: buttonWidth
@@ -80,6 +59,9 @@ Item {
                     highlighted: true
                     opacity: 0.5
                     font.pointSize: fontSize
+                    ToolTip.visible: hovered
+                    ToolTip.text: qsTr("美美哒")
+
                     property bool selected: false
                     onClicked: {
                         selected =!selected
@@ -96,8 +78,8 @@ Item {
             MouseArea{
                 x: (-width + beautyButton.width)/2
                 y: beautyButton.height
-                width: beautySlider.width
-                height: beautySlider.height
+                width: 160
+                height: 40
                 hoverEnabled: true
                 onExited: {
                     beautySlider.visible = false
@@ -114,7 +96,41 @@ Item {
                     from: 0
                     to: 100
                     visible: false
+                    ToolTip {
+                        parent: beautySlider.handle
+                        visible: beautySlider.pressed
+                        text: beautySlider.value.toFixed(0)
+                    }
                     onValueChanged: console.log("beauty:"+value)
+                }
+            }
+        }
+
+        Button{//暂停按钮
+            width: buttonWidth
+            height: buttonHeight
+            flat: true // 隐藏外边框
+            text: "\uf04b"
+            font.family: "FontAwesome"
+            highlighted: true
+            font.pointSize: fontSize
+            opacity: 0.5
+            ToolTip{
+                id: tooltip
+                visible: parent.hovered
+                text:  qsTr("休息一会")
+            }
+
+            property bool selected: true
+            onClicked: {
+                console.log("Play/Pause")
+                selected =!selected
+                if(selected){
+                    opacity = 1
+                    tooltip.text = qsTr("休息一会")
+                }else{
+                    opacity = 0.5
+                    tooltip.text = qsTr("继续工作")
                 }
             }
         }
@@ -128,6 +144,8 @@ Item {
             highlighted: true
             opacity: 0.5
             font.pointSize: fontSize
+            ToolTip.visible: hovered
+            ToolTip.text: qsTr("纪念此刻")
             property bool selected: true
             onClicked: {
                 console.log("GrabImage")
@@ -170,6 +188,8 @@ Item {
                     highlighted: true
                     opacity: 0.5
                     font.pointSize: fontSize
+                    ToolTip.visible: hovered
+                    ToolTip.text: qsTr("美白")
                     property bool selected: false
                     onClicked: {
                         selected =!selected
@@ -186,8 +206,8 @@ Item {
             MouseArea{
                 x: (-width + brightlessButton.width)/2
                 y: brightlessButton.height
-                width: brightlessSlider.width
-                height: brightlessSlider.height
+                width: 160
+                height: 40
                 hoverEnabled: true
                 onExited: {
                     brightlessSlider.visible = false
@@ -205,6 +225,11 @@ Item {
                     to: 100
                     visible: false
                     onValueChanged: console.log("brightless:"+value)
+                    ToolTip {
+                        parent: brightlessSlider.handle
+                        visible: brightlessSlider.pressed
+                        text: brightlessSlider.value.toFixed(0)
+                    }
                 }
             }
         }
