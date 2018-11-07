@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>Image/logo.ico</file>
+        <file>Image/systemInfo.png</file>
+        <file>Image/logo.png</file>
     </qresource>
 </RCC>

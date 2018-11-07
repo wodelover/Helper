@@ -22,6 +22,7 @@ import QtQuick.Controls 2.2
 **/
 Item {
     // 下列属性需要外部设置
+    //property string defaultFontFamily: "田相岳圆楷体"
     property int buttonWidth: 0//40 按钮的宽度
     property int buttonHeight: 0//40 按钮的高度
     property int fontSize: 10 //40按钮字体大小
@@ -59,9 +60,11 @@ Item {
                     highlighted: true
                     opacity: 0.5
                     font.pointSize: fontSize
-                    ToolTip.visible: hovered
-                    ToolTip.text: qsTr("美美哒")
-
+                    ToolTip{
+                        visible: parent.hovered
+                        text: qsTr("美美哒")
+                        font.family: defaultFontFamily
+                    }
                     property bool selected: false
                     onClicked: {
                         selected =!selected
@@ -97,11 +100,21 @@ Item {
                     to: 100
                     visible: false
                     ToolTip {
+                        id: beautyTooltip
                         parent: beautySlider.handle
                         visible: beautySlider.pressed
-                        text: beautySlider.value.toFixed(0)
+                        font.family: defaultFontFamily
                     }
-                    onValueChanged: console.log("beauty:"+value)
+                    onValueChanged:
+                    {
+                        if(value>99.5){
+                            beautyTooltip.text = qsTr("已经最美了")
+                        }
+                        else{
+                            beautyTooltip.text = value.toFixed(0)
+                        }
+                        console.log("beauty:"+value)
+                    }
                 }
             }
         }
@@ -118,13 +131,12 @@ Item {
             ToolTip{
                 id: tooltip
                 visible: parent.hovered
-                text:  qsTr("休息一会")
+                text:  qsTr("休息一会儿")
+                font.family: defaultFontFamily
             }
-
             property bool selected: true
             onClicked: {
                 console.log("Play/Pause")
-                selected =!selected
                 if(selected){
                     opacity = 1
                     tooltip.text = qsTr("休息一会")
@@ -132,6 +144,7 @@ Item {
                     opacity = 0.5
                     tooltip.text = qsTr("继续工作")
                 }
+                selected =!selected
             }
         }
 
@@ -144,8 +157,11 @@ Item {
             highlighted: true
             opacity: 0.5
             font.pointSize: fontSize
-            ToolTip.visible: hovered
-            ToolTip.text: qsTr("纪念此刻")
+            ToolTip{
+                visible: parent.hovered
+                text: qsTr("纪念此刻")
+                font.family: defaultFontFamily
+            }
             property bool selected: true
             onClicked: {
                 console.log("GrabImage")
@@ -188,8 +204,11 @@ Item {
                     highlighted: true
                     opacity: 0.5
                     font.pointSize: fontSize
-                    ToolTip.visible: hovered
-                    ToolTip.text: qsTr("美白")
+                    ToolTip{
+                        visible: parent.hovered
+                        text: qsTr("美白")
+                        font.family: defaultFontFamily
+                    }
                     property bool selected: false
                     onClicked: {
                         selected =!selected
@@ -224,11 +243,21 @@ Item {
                     from: 0
                     to: 100
                     visible: false
-                    onValueChanged: console.log("brightless:"+value)
+                    onValueChanged: {
+                        if(value>99.5){
+                            brightlessTooltip.text = qsTr("已经很白了")
+                        }
+                        else{
+                            brightlessTooltip.text = value.toFixed(0)
+                        }
+                        console.log("brightless:"+value)
+                    }
+
                     ToolTip {
+                        id: brightlessTooltip
                         parent: brightlessSlider.handle
                         visible: brightlessSlider.pressed
-                        text: brightlessSlider.value.toFixed(0)
+                        font.family: defaultFontFamily
                     }
                 }
             }

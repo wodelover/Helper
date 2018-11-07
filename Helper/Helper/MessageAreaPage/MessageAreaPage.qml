@@ -27,7 +27,7 @@ Item {
     property int itemWidth: 0 // 单独子项的宽度
     property int itemHeight: 0 // 单独子项的高度
     property int currentValue: 0 //当前选中项索引
-
+    property int duration: 5    //每一项之间的间隔
     function nextItem(){ //下一项
         settingListView.decrementCurrentIndex()
     }
@@ -42,61 +42,73 @@ Item {
             settingText: qsTr("设备连接11111111111111111111111111111111122222222222222222222222223333333333R")
             childText: qsTr("蓝牙、WiFi、DLAN0000000000000000000000000000000000000000000000000000000000")
             timeText: "下午5:10"
+            imgPath: "/Image/systemInfo.png"
         }
         ListElement{
             settingText: qsTr("模式切换")
             childText: qsTr("经典、动感、传统")
             timeText: "下午5:19"
+            imgPath: "/Image/systemInfo.png"
         }
         ListElement{
             settingText: qsTr("显示调节")
             childText: qsTr("亮度、色调、环境")
             timeText: "中午12:01"
+            imgPath: "/Image/systemInfo.png"
         }
         ListElement{
             settingText: qsTr("语言切换")
             childText: qsTr("简体中文、English")
             timeText: "早上8:18"
+            imgPath: "/Image/systemInfo.png"
         }
         ListElement{
             settingText: qsTr("行车设置")
             childText: qsTr("超速提示、车门控制、时间")
             timeText: "下午6:19"
+            imgPath: "/Image/systemInfo.png"
         }
         ListElement{
             settingText: qsTr("系统信息")
             childText: qsTr("系统更新、系统版本")
             timeText: "下午4:19"
+            imgPath: "/Image/systemInfo.png"
         }
         ListElement{
             settingText: qsTr("设备连接")
             childText: qsTr("蓝牙、WiFi、DLAN")
             timeText: "下午2:19"
+            imgPath: "/Image/systemInfo.png"
         }
         ListElement{
             settingText: qsTr("模式切换")
             childText: qsTr("经典、动感、传统")
             timeText: "昨天15:10"
+            imgPath: "/Image/systemInfo.png"
         }
         ListElement{
             settingText: qsTr("显示调节")
             childText: qsTr("亮度、色调、环境")
             timeText: "昨天13:19"
+            imgPath: "/Image/systemInfo.png"
         }
         ListElement{
             settingText: qsTr("语言切换")
             childText: qsTr("简体中文、English")
             timeText: "昨天5:19"
+            imgPath: "/Image/systemInfo.png"
         }
         ListElement{
             settingText: qsTr("行车设置")
             childText: qsTr("超速提示、车门控制、时间")
             timeText: "星期五"
+            imgPath: "/Image/systemInfo.png"
         }
         ListElement{
             settingText: qsTr("系统信息")
             childText: qsTr("系统更新、系统版本")
             timeText: "星期四"
+            imgPath: "/Image/systemInfo.png"
         }
     }
     Component{//单个子项组件
@@ -104,13 +116,23 @@ Item {
         Item{
             id: delegateItem
             width: itemWidth
-            height: itemHeight
+            height: itemHeight + duration * 2
             property bool isReaded: false // 数据绑定到每一项是否被点击阅读
+
+            Image {//消息图片
+                id: img
+                source: imgPath
+                x: itemHeight * 0.1
+                y: itemHeight * 0.1
+                width: itemHeight * 0.8
+                height: itemHeight * 0.8
+            }
+
             Text {//消息标题
                 id: mainText
-                x: itemHeight * 0.1
+                x: img.width + itemHeight * 0.2
                 y: itemHeight * 0.2
-                width: itemWidth * 0.7
+                width: itemWidth * 0.5
                 height: itemHeight * 0.38
                 text: settingText
                 elide: Text.ElideRight
@@ -123,9 +145,9 @@ Item {
                 horizontalAlignment: Text.AlignLeft
             }
             Text {//消息预览内容
-                x: itemHeight * 0.1
+                x: img.width + itemHeight * 0.2
                 y: itemHeight * 0.67
-                width: itemWidth * 0.7
+                width: itemWidth * 0.6
                 text: childText
                 color: delegateItem.ListView.isCurrentItem ? "lightpink" : "snow"
                 smooth: true
@@ -135,6 +157,7 @@ Item {
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignLeft
             }
+
             Text {//消息时间显示
                 x: itemWidth * 0.75
                 y: itemHeight / 2
@@ -150,6 +173,7 @@ Item {
             MouseArea{ //单独一项鼠标处理事件
                 anchors.fill: parent
                 onDoubleClicked: {
+                    delegateItem.ListView.view.currentItem.isReaded = true
                     console.log(index)
                 }
                 onClicked: {

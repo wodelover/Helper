@@ -7,5 +7,6 @@
         <file>ImageAreaPage/ImageAreaPage.qml</file>
         <file>ToolsAreaPage/ToolsAreaPage.qml</file>
         <file>ImageAreaPage/ImagetoolsMenu.qml</file>
+        <file>ToolsAreaPage/ScrollListView.qml</file>
     </qresource>
 </RCC>
