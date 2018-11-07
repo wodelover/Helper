@@ -21,7 +21,7 @@ import QtQuick.Controls.Material 2.2
  * @update_time
 **/
 Item {
-    Item {
+    Item { // 左侧工具栏
         id: rightToolArea
         width: 40
         height: parent.height
@@ -42,11 +42,16 @@ Item {
             }
         }
     }
-    ListModel{
+
+    ListModel{ // 填充模型数据
         id: model
         ListElement{
-            subText: "\uf2bc"
+            subText: "\uf2c3"
             toolTipText: qsTr("我的隐私")
+        }
+        ListElement{
+            subText: "\uf26c"
+            toolTipText: qsTr("工作管理")
         }
         ListElement{
             subText: "\uf11c"
@@ -56,13 +61,9 @@ Item {
             subText: "\uf084"
             toolTipText: qsTr("更新秘钥")
         }
-        ListElement{
-            subText: "\uf017"
-            toolTipText: qsTr("时间管理")
-        }
     }
 
-    Component{
+    Component{ // 模型
         id: delegate
         Item {
             id: delegateView
@@ -78,22 +79,51 @@ Item {
                 font.pointSize: 16
                 highlighted: true
                 hoverEnabled: true
+                onClicked: {
+                    for(var i =0; i<leftToolArea.submenu.length;i++){
+                        leftToolArea.submenu[i].visible = false
+                    }
+                    leftToolArea.submenu[index].visible = true
+                }
+
                 ToolTip{
                     x: parent.width + 5
-                    y: 10
+                    y: 7
                     visible: parent.hovered
                     text: toolTipText
                     font.family: defaultFontFamily
+                    font.pointSize: 14
                 }
             }
         }
     }
 
-    Item {
+    Item { // 右侧主显示区域
         id: leftToolArea
-        x: rightToolArea.width
-        width: parent.width - rightToolArea.width
+        x: rightToolArea.width + rightToolArea.x
+        width: parent.width - x
         height: parent.height
+        property var submenu: [userInfo,workManager,passWd,authenticationKey]
+        UserInfo{
+            id: userInfo
+            anchors.fill: parent
+            visible: false
+        }
+        WorkManager{
+            id: workManager
+            anchors.fill: parent
+            visible: false
+        }
+        UpdatePasswd{
+            id: passWd
+            anchors.fill: parent
+            visible: false
+        }
+        UpdateAuthenticationKey{
+            id: authenticationKey
+            anchors.fill: parent
+            visible: false
+        }
     }
 
 }

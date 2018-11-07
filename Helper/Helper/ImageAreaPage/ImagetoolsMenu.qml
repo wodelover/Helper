@@ -64,6 +64,7 @@ Item {
                         visible: parent.hovered
                         text: qsTr("美美哒")
                         font.family: defaultFontFamily
+                        font.pointSize: 14
                     }
                     property bool selected: false
                     onClicked: {
@@ -132,6 +133,7 @@ Item {
                 id: tooltip
                 visible: parent.hovered
                 text:  qsTr("休息一会儿")
+                font.pointSize: 14
                 font.family: defaultFontFamily
             }
             property bool selected: true
@@ -161,6 +163,7 @@ Item {
                 visible: parent.hovered
                 text: qsTr("纪念此刻")
                 font.family: defaultFontFamily
+                font.pointSize: 14
             }
             property bool selected: true
             onClicked: {
@@ -207,6 +210,7 @@ Item {
                     ToolTip{
                         visible: parent.hovered
                         text: qsTr("美白")
+                        font.pointSize: 14
                         font.family: defaultFontFamily
                     }
                     property bool selected: false

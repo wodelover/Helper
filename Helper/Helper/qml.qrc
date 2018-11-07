@@ -8,5 +8,9 @@
         <file>ToolsAreaPage/ToolsAreaPage.qml</file>
         <file>ImageAreaPage/ImagetoolsMenu.qml</file>
         <file>ToolsAreaPage/ScrollListView.qml</file>
+        <file>ToolsAreaPage/UserInfo.qml</file>
+        <file>ToolsAreaPage/UpdatePasswd.qml</file>
+        <file>ToolsAreaPage/UpdateAuthenticationKey.qml</file>
+        <file>ToolsAreaPage/WorkManager.qml</file>
     </qresource>
 </RCC>

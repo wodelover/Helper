@@ -21,18 +21,22 @@ ApplicationWindow {
     property int xMouse : 0 //存储鼠标x坐标
     property int yMouse : 0 //存储鼠标y坐标
 
-    SwipeView {
-        id: swipeView
+    Rectangle{
         y: head.height
         width: parent.width
         height: parent.height - head.height
-        currentIndex: 2//tabBar.currentIndex
-        MessageAreaPage{
-            itemWidth: mainWindow.width
-            itemHeight: 50
+        color: Qt.rgba(0.16,0.16,0.16,1)
+        SwipeView {
+            id: swipeView
+            anchors.fill: parent
+            currentIndex: 2//tabBar.currentIndex
+            MessageAreaPage{
+                itemWidth: mainWindow.width
+                itemHeight: 50
+            }
+            ImageAreaPage{}
+            ToolsAreaPage{}
         }
-        ImageAreaPage{}
-        ToolsAreaPage{}
     }
 
     Pane{
