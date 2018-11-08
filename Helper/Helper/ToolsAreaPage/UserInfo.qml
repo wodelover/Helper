@@ -58,7 +58,8 @@ Item {
                 height: parent.height
                 Image {
                     id: photo
-                    anchors.fill: parent
+                    width: parent.width
+                    height: parent.height
                     source: ""
                     MouseArea{
                         anchors.fill: photo
