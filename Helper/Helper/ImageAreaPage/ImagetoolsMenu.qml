@@ -56,7 +56,7 @@ Item {
                     height: buttonHeight
                     flat: true // 隐藏外边框
                     text: "\uf2be"
-                    font.family: "FontAwesome"
+                    font.family: defaultIconFamily
                     highlighted: true
                     opacity: 0.5
                     font.pointSize: fontSize
@@ -125,7 +125,7 @@ Item {
             height: buttonHeight
             flat: true // 隐藏外边框
             text: "\uf04b"
-            font.family: "FontAwesome"
+            font.family: defaultIconFamily
             highlighted: true
             font.pointSize: fontSize
             opacity: 0.5
@@ -155,7 +155,7 @@ Item {
             height: buttonHeight
             flat: true // 隐藏外边框
             text: "\uf03e"
-            font.family: "FontAwesome"
+            font.family: defaultIconFamily
             highlighted: true
             opacity: 0.5
             font.pointSize: fontSize
@@ -203,7 +203,7 @@ Item {
                     height: buttonHeight
                     flat: true // 隐藏外边框
                     text: "\uf185"
-                    font.family: "FontAwesome"
+                    font.family: defaultIconFamily
                     highlighted: true
                     opacity: 0.5
                     font.pointSize: fontSize

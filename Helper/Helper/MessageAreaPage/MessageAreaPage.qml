@@ -191,7 +191,7 @@ Item {
                 highlighted: true
                 text: "\uf0eb"
                 visible: !isReaded
-                font.family: "FontAwesome"
+                font.family: defaultIconFamily
                 onClicked: {
                     isReaded = true
                     delegateItem.ListView.view.currentIndex = index

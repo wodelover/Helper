@@ -75,8 +75,8 @@ Item {
                 height: parent.width + 10
                 text: subText
                 flat: true
-                font.family: "FontAwesome"
-                font.pointSize: 16
+                font.family: defaultIconFamily
+                font.pointSize: defaultFontSize
                 highlighted: true
                 hoverEnabled: true
                 onClicked: {

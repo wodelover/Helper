@@ -13,7 +13,9 @@ ApplicationWindow {
     flags: Qt.FramelessWindowHint | Qt.Window
 
     // 定义本模式下默认字体
-    property string defaultFontFamily: "田相岳圆楷体"
+    property string defaultFontFamily: "田相岳圆楷体" //默认字体
+    property string defaultIconFamily: "FontAwesome" //默认图标库
+    property int defaultFontSize: 16 // 默认字体大小
     property int buttonWidth: 45 //定义标题栏菜单按钮宽度
     property int tittleMenuHeight: 30//定义菜单栏高度
     property int mainWindowX : 0 //用来存储主窗口x坐标
@@ -124,7 +126,7 @@ ApplicationWindow {
                 x:parent.width-width * 2 - 18
                 width: 25
                 height: 35
-                font.family: "FontAwesome"
+                font.family: defaultIconFamily
                 text: "\uf068"
                 onClicked: mainWindow.showMinimized()
             }
@@ -134,7 +136,7 @@ ApplicationWindow {
                 x:parent.width-width - 2
                 width: 40
                 height: 35
-                font.family: "FontAwesome"
+                font.family: defaultIconFamily
                 text: "\uf00d"
                 onClicked: Qt.quit()
             }
@@ -147,17 +149,17 @@ ApplicationWindow {
         currentIndex: swipeView.currentIndex
 
         TabButton {
-            font.family:  "FontAwesome"
+            font.family:  defaultIconFamily
             text: "\uf0e5"
             font.pointSize: 26
         }
         TabButton {
-            font.family:  "FontAwesome"
+            font.family:  defaultIconFamily
             font.pointSize: 26
             text: "\uf083"
         }
         TabButton {
-            font.family:  "FontAwesome"
+            font.family:  defaultIconFamily
             font.pointSize: 26
             text: "\uf0b1"
         }

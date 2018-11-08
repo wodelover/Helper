@@ -34,7 +34,7 @@ Item {
         opacity: 0.7
         highlighted: true
         text: "\uf055"
-        font.family: "FontAwesome"
+        font.family: defaultIconFamily
         font.pointSize: 40
         onClicked: {
             if(opened){
