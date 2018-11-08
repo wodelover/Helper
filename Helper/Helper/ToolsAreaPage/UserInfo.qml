@@ -128,6 +128,8 @@ Item {
                             id: name
                             placeholderText: userName
                             font.bold: true
+                            font.family: defaultFontFamily
+                            font.pointSize: defaultFontSize
                             onTextChanged: {
                                 updateNameButton.visible = true
                             }
@@ -183,6 +185,8 @@ Item {
                             readOnly: true
                             font.bold: true
                             hoverEnabled: true
+                            font.family: defaultFontFamily
+                            font.pointSize: defaultFontSize
                             ToolTip{
                                 y: parent.height
                                 visible: parent.hovered
@@ -218,6 +222,8 @@ Item {
                             readOnly: true
                             font.bold: true
                             hoverEnabled: true
+                            font.family: defaultFontFamily
+                            font.pointSize: defaultFontSize
                             ToolTip{
                                 y: parent.height
                                 visible: parent.hovered
@@ -256,17 +262,21 @@ Item {
                             }
                         }
                         ComboBox{//性别选择
+                            id: sexComboBox
                             model: userSex
                             flat: true
+                            y: -5
+                            font.family: defaultFontFamily
+                            font.pointSize: defaultFontSize
                             onCurrentIndexChanged: {
                                 if(!currentIndex){
                                     sex.text = "\uf222"
-                                    sexComboBox.model = userBoyStatus
+                                    ageComboBox.model = userBoyStatus
                                 }else{
                                     sex.text = "\uf221"
-                                    sexComboBox.model = userGirlStatus
+                                    ageComboBox.model = userGirlStatus
                                 }
-                                console.log(currentText)
+                                console.log(sexComboBox.textAt(currentIndex))
                             }
                         }
                     }
@@ -292,16 +302,20 @@ Item {
                             }
                         }
                         ComboBox{//年龄状态选择
-                            id: sexComboBox
+                            id: ageComboBox
+                            y: -5
+                            width: 140
                             model: userBoyStatus
                             flat: true
+                            font.family: defaultFontFamily
+                            font.pointSize: defaultFontSize
                             onCurrentIndexChanged: {
                                 if(!currentIndex){
                                     sex.text = "\uf222"
                                 }else{
                                     sex.text = "\uf221"
                                 }
-                                console.log(currentText)
+                                console.log(ageComboBox.textAt(currentIndex))
                             }
                         }
                     }
