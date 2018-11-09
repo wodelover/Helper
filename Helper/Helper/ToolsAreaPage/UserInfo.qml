@@ -343,8 +343,16 @@ Item {
                             flat: true
                             text: "\ue94d"
                             highlighted: true
+                            hoverEnabled: true
                             font.pointSize: defaultFontSize
                             font.family: defaultIconImoon
+                            ToolTip{
+                                y: parent.height
+                                text: qsTr("打卡时间")
+                                font.family: defaultFontFamily
+                                font.pointSize: defaultFontSize
+                                visible: parent.hovered
+                            }
                         }
                     }
                     Row{//下班时间
