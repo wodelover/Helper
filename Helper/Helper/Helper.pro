@@ -16,7 +16,6 @@ SOURCES += \
         main.cpp
 
 RESOURCES += qml.qrc \
-    font.qrc \
     image.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model

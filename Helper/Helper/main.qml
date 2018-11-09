@@ -13,8 +13,9 @@ ApplicationWindow {
     flags: Qt.FramelessWindowHint | Qt.Window
 
     // 定义本模式下默认字体
-    property string defaultFontFamily: "华文行楷" //默认字体
+    property string defaultFontFamily: "田相岳圆楷体" //默认字体
     property string defaultIconFamily: "FontAwesome" //默认图标库
+    property string defaultIconImoon:  "Imoon" //默认Imoon图标库
     property int defaultFontSize: 16 // 默认字体大小
     property int buttonWidth: 45 //定义标题栏菜单按钮宽度
     property int tittleMenuHeight: 30//定义菜单栏高度

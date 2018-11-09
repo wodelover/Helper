@@ -1,7 +1,3 @@
 <RCC>
-    <qresource prefix="/">
-        <file>Font/fontawesome-webfont.ttf</file>
-        <file>Font/STXIHEI.ttf</file>
-        <file>Font/Tianshi Yuankai.ttf</file>
-    </qresource>
+    <qresource prefix="/"/>
 </RCC>

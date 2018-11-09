@@ -10,10 +10,13 @@ int main(int argc, char *argv[])
 
     app.setWindowIcon(QIcon(QLatin1String(":/Image/logo.ico")));
 
+    QString path = QCoreApplication::applicationDirPath();
 
-    // 注册矢量图标库
-    QFontDatabase::addApplicationFont(QLatin1String(":/Font/fontawesome-webfont.ttf"));
-    QFontDatabase::addApplicationFont(QLatin1String(":/Font/STXIHEI.TTF"));
+    // 注册字体矢量图标库
+    QFontDatabase::addApplicationFont(path + "/Font/fontawesome-webfont.ttf");
+    QFontDatabase::addApplicationFont(path + "/Font/STXIHEI.ttf");
+    QFontDatabase::addApplicationFont(path + "/Font/Tianshi Yuankai.ttf");
+    QFontDatabase::addApplicationFont(path + "/Font/Imoon.ttf");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

@@ -331,9 +331,26 @@ Item {
             Item {//当日打卡信息
                 width: parent.width * 0.33
                 height: parent.height
-                Rectangle{
-                    anchors.fill: parent
-                    color: "white"
+                Column{
+                    spacing: 5
+                    padding: 5
+                    Row{//上班时间
+                        spacing: 5
+                        padding: 5
+                        Button{
+                            width: 30
+                            height: 40
+                            flat: true
+                            text: "\ue94d"
+                            highlighted: true
+                            font.pointSize: defaultFontSize
+                            font.family: defaultIconImoon
+                        }
+                    }
+                    Row{//下班时间
+                        spacing: 5
+                        padding: 5
+                    }
                 }
             }
             Item {//本周打卡信息
