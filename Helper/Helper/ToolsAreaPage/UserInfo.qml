@@ -44,13 +44,17 @@ Item {
     property var userGirlStatus: ["豆蔻年华","及笄之年","碧玉年华","花信年华","年逾半百","年过花甲","从心之年","耄耋之年"] //user status
 
     //sign infomation
+    property string signTimeText:  "早上8:30"
+    property string quitTimeText:  "下午5:15"
+    property string workDayText:  "已经工作4天"
+    property string lateDayText:  "迟到0天"
+    property string workMonthText: "已经工作20天"
+    property string lateMonthText: "迟到0天"
 
 
     Column{//列布局
-        spacing: 5
         anchors.fill: parent
         Row{
-            padding: 5
             width: parent.width
             height: parent.height / 2
             Item {//头像区域
@@ -59,7 +63,7 @@ Item {
                 Image {
                     id: photo
                     width: parent.width
-                    height: parent.height
+                    height: parent.height - 10
                     source: ""
                     MouseArea{
                         anchors.fill: photo
@@ -74,7 +78,9 @@ Item {
 
                         Button{
                             id: photoButton
-                            anchors.fill: parent
+                            y: -5
+                            width: parent.width
+                            height: parent.height + 10
                             text: qsTr("上传美照")
                             icon.color: "transparent"//设置头像原图显示
                             icon.width: parent.width
@@ -348,33 +354,181 @@ Item {
                             font.family: defaultIconImoon
                             ToolTip{
                                 y: parent.height
-                                text: qsTr("打卡时间")
+                                text: qsTr("上班时间")
                                 font.family: defaultFontFamily
                                 font.pointSize: defaultFontSize
                                 visible: parent.hovered
                             }
                         }
+                        TextField{
+                            id: signTime
+                            text: signTimeText
+                            font.bold: true
+                            font.family: defaultFontFamily
+                            font.pointSize: defaultFontSize
+                            readOnly: true
+                        }
+
                     }
                     Row{//下班时间
                         spacing: 5
                         padding: 5
+                        Button{
+                            width: 30
+                            height: 40
+                            flat: true
+                            text: "\ue94d"
+                            highlighted: true
+                            hoverEnabled: true
+                            font.pointSize: defaultFontSize
+                            font.family: defaultIconImoon
+                            ToolTip{
+                                y: parent.height
+                                text: qsTr("下班时间")
+                                font.family: defaultFontFamily
+                                font.pointSize: defaultFontSize
+                                visible: parent.hovered
+                            }
+                        }
+                        TextField{
+                            id: quitTime
+                            text: quitTimeText
+                            font.bold: true
+                            font.family: defaultFontFamily
+                            font.pointSize: defaultFontSize
+                            readOnly: true
+                        }
                     }
                 }
             }
             Item {//本周打卡信息
                 width: parent.width * 0.33
                 height: parent.height
-                Rectangle{
-                    anchors.fill: parent
-                    color: "red"
+                Column{
+                    spacing: 5
+                    padding: 5
+                    Row{
+                        spacing: 5
+                        padding: 5
+                        Button{
+                            width: 30
+                            height: 40
+                            flat: true
+                            text: "\ue94d"
+                            highlighted: true
+                            hoverEnabled: true
+                            font.pointSize: defaultFontSize
+                            font.family: defaultIconImoon
+                            ToolTip{
+                                y: parent.height
+                                text: qsTr("周工作天数")
+                                font.family: defaultFontFamily
+                                font.pointSize: defaultFontSize
+                                visible: parent.hovered
+                            }
+                        }
+                        TextField{
+                            text: workDayText
+                            font.bold: true
+                            font.family: defaultFontFamily
+                            font.pointSize: defaultFontSize
+                            readOnly: true
+                        }
+
+                    }
+                    Row{
+                        spacing: 5
+                        padding: 5
+                        Button{
+                            width: 30
+                            height: 40
+                            flat: true
+                            text: "\ue94d"
+                            highlighted: true
+                            hoverEnabled: true
+                            font.pointSize: defaultFontSize
+                            font.family: defaultIconImoon
+                            ToolTip{
+                                y: parent.height
+                                text: qsTr("周迟到天数")
+                                font.family: defaultFontFamily
+                                font.pointSize: defaultFontSize
+                                visible: parent.hovered
+                            }
+                        }
+                        TextField{
+                            text: lateDayText
+                            font.bold: true
+                            font.family: defaultFontFamily
+                            font.pointSize: defaultFontSize
+                            readOnly: true
+                        }
+                    }
                 }
             }
             Item {//当月打卡信息
                 width: parent.width * 0.33
                 height: parent.height
-                Rectangle{
-                    anchors.fill: parent
-                    color: "green"
+                Column{
+                    spacing: 5
+                    padding: 5
+                    Row{//上班时间
+                        spacing: 5
+                        padding: 5
+                        Button{
+                            width: 30
+                            height: 40
+                            flat: true
+                            text: "\ue94d"
+                            highlighted: true
+                            hoverEnabled: true
+                            font.pointSize: defaultFontSize
+                            font.family: defaultIconImoon
+                            ToolTip{
+                                y: parent.height
+                                text: qsTr("月工作天数")
+                                font.family: defaultFontFamily
+                                font.pointSize: defaultFontSize
+                                visible: parent.hovered
+                            }
+                        }
+                        TextField{
+                            text: workMonthText
+                            font.bold: true
+                            font.family: defaultFontFamily
+                            font.pointSize: defaultFontSize
+                            readOnly: true
+                        }
+
+                    }
+                    Row{
+                        spacing: 5
+                        padding: 5
+                        Button{
+                            width: 30
+                            height: 40
+                            flat: true
+                            text: "\ue94d"
+                            highlighted: true
+                            hoverEnabled: true
+                            font.pointSize: defaultFontSize
+                            font.family: defaultIconImoon
+                            ToolTip{
+                                y: parent.height
+                                text: qsTr("月迟到天数")
+                                font.family: defaultFontFamily
+                                font.pointSize: defaultFontSize
+                                visible: parent.hovered
+                            }
+                        }
+                        TextField{
+                            text: lateMonthText
+                            font.bold: true
+                            font.family: defaultFontFamily
+                            font.pointSize: defaultFontSize
+                            readOnly: true
+                        }
+                    }
                 }
             }
         }
