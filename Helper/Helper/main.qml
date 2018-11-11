@@ -37,8 +37,10 @@ ApplicationWindow {
                 itemWidth: mainWindow.width
                 itemHeight: 50
             }
-            ImageAreaPage{}
-            ToolsAreaPage{}
+            ImageAreaPage{
+            }
+            ToolsAreaPage{
+            }
         }
     }
 

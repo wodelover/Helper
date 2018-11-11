@@ -80,10 +80,7 @@ Item {
                 highlighted: true
                 hoverEnabled: true
                 onClicked: {
-                    for(var i =0; i<leftToolArea.submenu.length;i++){
-                        leftToolArea.submenu[i].visible = false
-                    }
-                    leftToolArea.submenu[index].visible = true
+                    swipViewUserinfo.currentIndex = index
                 }
 
                 ToolTip{
@@ -98,32 +95,21 @@ Item {
         }
     }
 
-    Item { // 右侧主显示区域
-        id: leftToolArea
+    SwipeView{ // 右侧主显示区域
+        id: swipViewUserinfo
         x: rightToolArea.width + rightToolArea.x
         width: parent.width - x
         height: parent.height
-        property var submenu: [userInfo,workManager,passWd,authenticationKey]
-        UserInfo{
-            id: userInfo
-            anchors.fill: parent
-            visible: false
+        clip: true
+        orientation: Qt.Vertical
+        UserInfo{//用户信息
         }
-        WorkManager{
-            id: workManager
-            anchors.fill: parent
-            visible: false
+        WorkManager{//工作管理
         }
-        UpdatePasswd{
-            id: passWd
-            anchors.fill: parent
-            visible: false
+        UpdatePasswd{//更新登陆密码
         }
-        UpdateAuthenticationKey{
-            id: authenticationKey
-            anchors.fill: parent
-            visible: false
+        UpdateAuthenticationKey{//更新当前人脸验证key
         }
     }
-
 }
+

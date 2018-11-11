@@ -36,6 +36,7 @@ import QtQuick.Controls.Material 2.2
 Item {
 
     //base infomation
+    property string imgPath: ""
     property string userName: "zhangsan"//user name
     property string userNum: "CBAZ1234" //user number
     property string userJob: "软件工程师" //user job
@@ -62,9 +63,11 @@ Item {
                 height: parent.height
                 Image {
                     id: photo
+                    x: 8
+                    y: 10
                     width: parent.width
-                    height: parent.height - 10
-                    source: ""
+                    height: parent.height - 20
+                    source: imgPath
                     MouseArea{
                         anchors.fill: photo
                         hoverEnabled: true
@@ -73,6 +76,7 @@ Item {
                         }
 
                         onExited: {
+                            if(imgPath.length)
                             photoButton.visible = false
                         }
 
@@ -81,7 +85,7 @@ Item {
                             y: -5
                             width: parent.width
                             height: parent.height + 10
-                            text: qsTr("上传美照")
+                            text: qsTr("添加肖像")
                             icon.color: "transparent"//设置头像原图显示
                             icon.width: parent.width
                             icon.height: parent.height
@@ -94,13 +98,15 @@ Item {
 
                         FileDialog{
                             id: photoDialog
-                            title: qsTr("选择你的美照");
+                            title: qsTr("选择你的肖像");
                             nameFilters:"Image Files (*.jpg *.png *.bmp *.ico)"
                             onAccepted: {
-                                photo.source = fileUrl
+                                imgPath = fileUrl
+                                photoButton.visible = false
                             }
                             onRejected: {
-                                photoButton.text = qsTr("上传美照")
+                                photoButton.visible = true
+                                photoButton.text = qsTr("添加肖像")
                             }
                         }
                     }
@@ -347,11 +353,11 @@ Item {
                             width: 30
                             height: 40
                             flat: true
-                            text: "\ue94d"
+                            text: "\uf017"
                             highlighted: true
                             hoverEnabled: true
                             font.pointSize: defaultFontSize
-                            font.family: defaultIconImoon
+                            font.family: defaultIconFamily
                             ToolTip{
                                 y: parent.height
                                 text: qsTr("上班时间")
@@ -377,7 +383,7 @@ Item {
                             width: 30
                             height: 40
                             flat: true
-                            text: "\ue94d"
+                            text: "\ue952"
                             highlighted: true
                             hoverEnabled: true
                             font.pointSize: defaultFontSize
@@ -414,7 +420,7 @@ Item {
                             width: 30
                             height: 40
                             flat: true
-                            text: "\ue94d"
+                            text: "\ue94e"
                             highlighted: true
                             hoverEnabled: true
                             font.pointSize: defaultFontSize
@@ -443,7 +449,7 @@ Item {
                             width: 30
                             height: 40
                             flat: true
-                            text: "\ue94d"
+                            text: "\ue94f"
                             highlighted: true
                             hoverEnabled: true
                             font.pointSize: defaultFontSize
@@ -479,7 +485,7 @@ Item {
                             width: 30
                             height: 40
                             flat: true
-                            text: "\ue94d"
+                            text: "\ue952"
                             highlighted: true
                             hoverEnabled: true
                             font.pointSize: defaultFontSize
@@ -508,7 +514,7 @@ Item {
                             width: 30
                             height: 40
                             flat: true
-                            text: "\ue94d"
+                            text: "\ue950"
                             highlighted: true
                             hoverEnabled: true
                             font.pointSize: defaultFontSize
