@@ -21,6 +21,7 @@
 /**************************************************/
 
 import QtQuick 2.9
+import QtQuick.Window 2.10
 import QtQuick.Controls 2.4
 import QtQuick.Dialogs 1.2
 import QtQuick.Controls.Material 2.2
@@ -77,7 +78,7 @@ Item {
 
                         onExited: {
                             if(imgPath.length)
-                            photoButton.visible = false
+                                photoButton.visible = false
                         }
 
                         Button{
@@ -469,6 +470,28 @@ Item {
                             font.pointSize: defaultFontSize
                             readOnly: true
                         }
+                        Button{
+                            width: 30
+                            height: 40
+                            flat: true
+                            text: "\uf128"
+                            highlighted: true
+                            hoverEnabled: true
+                            //                            font.pointSize: defaultFontSize
+                            font.family: defaultIconFamily
+                            ToolTip{
+                                y: parent.height
+                                text: qsTr("申请补卡")
+                                font.family: defaultFontFamily
+                                font.pointSize: defaultFontSize
+                                visible: parent.hovered
+                            }
+                            onClicked: {
+                                dialog.open()
+                                console.log(mainWindow.width)
+                                console.log(mainWindow.height)
+                            }
+                        }
                     }
                 }
             }
@@ -538,5 +561,16 @@ Item {
                 }
             }
         }
+    }
+
+    Popup {
+        id: dialog
+        x: (mainWindow.width - width)/2
+        y: (mainWindow.height - height)/2
+        width: 400
+        height: 300
+        modal: true
+        focus: true
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
     }
 }

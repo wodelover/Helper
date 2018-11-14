@@ -54,11 +54,11 @@ Item {
             toolTipText: qsTr("工作管理")
         }
         ListElement{
-            subText: "\uf11c"
+            subText: "\uf084"
             toolTipText: qsTr("修改密码")
         }
         ListElement{
-            subText: "\uf084"
+            subText: "\uf0ed"
             toolTipText: qsTr("更新秘钥")
         }
     }
