@@ -144,6 +144,7 @@ Item {
                             font.bold: true
                             font.family: defaultFontFamily
                             font.pointSize: defaultFontSize
+                            selectByMouse: true
                             onTextChanged: {
                                 updateNameButton.visible = true
                             }
@@ -199,6 +200,7 @@ Item {
                             readOnly: true
                             font.bold: true
                             hoverEnabled: true
+                            selectByMouse: true
                             font.family: defaultFontFamily
                             font.pointSize: defaultFontSize
                             ToolTip{
@@ -236,6 +238,7 @@ Item {
                             readOnly: true
                             font.bold: true
                             hoverEnabled: true
+                            selectByMouse: true
                             font.family: defaultFontFamily
                             font.pointSize: defaultFontSize
                             ToolTip{
@@ -371,6 +374,7 @@ Item {
                             id: signTime
                             text: signTimeText
                             font.bold: true
+                            selectByMouse: true
                             font.family: defaultFontFamily
                             font.pointSize: defaultFontSize
                             readOnly: true
@@ -401,6 +405,7 @@ Item {
                             id: quitTime
                             text: quitTimeText
                             font.bold: true
+                            selectByMouse: true
                             font.family: defaultFontFamily
                             font.pointSize: defaultFontSize
                             readOnly: true
@@ -437,6 +442,7 @@ Item {
                         TextField{
                             text: workDayText
                             font.bold: true
+                            selectByMouse: true
                             font.family: defaultFontFamily
                             font.pointSize: defaultFontSize
                             readOnly: true
@@ -466,6 +472,7 @@ Item {
                         TextField{
                             text: lateDayText
                             font.bold: true
+                            selectByMouse: true
                             font.family: defaultFontFamily
                             font.pointSize: defaultFontSize
                             readOnly: true
@@ -524,6 +531,7 @@ Item {
                         TextField{
                             text: workMonthText
                             font.bold: true
+                            selectByMouse: true
                             font.family: defaultFontFamily
                             font.pointSize: defaultFontSize
                             readOnly: true
@@ -553,6 +561,7 @@ Item {
                         TextField{
                             text: lateMonthText
                             font.bold: true
+                            selectByMouse: true
                             font.family: defaultFontFamily
                             font.pointSize: defaultFontSize
                             readOnly: true

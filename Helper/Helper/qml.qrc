@@ -12,5 +12,6 @@
         <file>ToolsAreaPage/UpdatePasswd.qml</file>
         <file>ToolsAreaPage/UpdateAuthenticationKey.qml</file>
         <file>ToolsAreaPage/WorkManager.qml</file>
+        <file>MessageBox.qml</file>
     </qresource>
 </RCC>

@@ -32,7 +32,7 @@ ApplicationWindow {
         SwipeView {
             id: swipeView
             anchors.fill: parent
-            currentIndex: 2//tabBar.currentIndex
+            currentIndex: tabBar.currentIndex
             MessageAreaPage{
                 itemWidth: mainWindow.width
                 itemHeight: 50
@@ -166,5 +166,13 @@ ApplicationWindow {
             font.pointSize: 26
             text: "\uf0b1"
         }
+    }
+
+    MessageBox{
+        id: messageBox
+    }
+
+    Component.onCompleted: {
+        //messageBox.open()
     }
 }
