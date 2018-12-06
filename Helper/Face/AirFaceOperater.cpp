@@ -98,7 +98,7 @@ float AirFaceOperater::FaceComparison(Mat *srcImg, Mat *dstImg,bool mutilpCompar
             res = ASFFaceFeatureExtract(handle, srcImg->cols, srcImg->rows, ASVL_PAF_RGB24_B8G8R8, (MUInt8*)srcImg->data, &SingleDetectedFaces1, &feature1);
             if (res == MOK)
             {
-                //拷贝feature
+                //拷贝feature，否则第二次进行特征提取，会覆盖第一次特征提取的数据，导致比对的结果为1
                 copyfeature1.featureSize = feature1.featureSize;
                 copyfeature1.feature = (MByte *)malloc(feature1.featureSize);
                 memset(copyfeature1.feature, 0, feature1.featureSize);
