@@ -161,7 +161,7 @@ public:
      * @Version: 1.0.0
      * @Parma: [img] 图片
     **/
-    vector<int> GetAges(Mat &img);
+    vector<int> GetAges(Mat *img);
 
     /**
      * @MethodName: GetGender
@@ -180,7 +180,7 @@ public:
      * @Version: 1.0.0
      * @Parma: [img] 图片
     **/
-    vector<int> GetGender(Mat &img);
+    vector<int> GetGender(Mat *img);
 
     /**
      * @MethodName: Get3DAngle

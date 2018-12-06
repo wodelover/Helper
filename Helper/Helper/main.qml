@@ -173,6 +173,6 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        //messageBox.open()
+        messageBox.openBox()
     }
 }

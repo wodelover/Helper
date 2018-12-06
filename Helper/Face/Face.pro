@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       -= gui
+QT       += gui
 
 TARGET = Face
 TEMPLATE = lib
@@ -22,14 +22,35 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+#include(faceheader.pri)
+
 SOURCES += \
-        face.cpp
+        face.cpp \
+    AirFaceOperater.cpp \
+    FormatConversion.cpp
 
 HEADERS += \
         face.h \
-        face_global.h 
-
+        face_global.h \  
+    AirFaceOperater.h \
+    FormatConversion.h
 unix {
     target.path = /usr/lib
     INSTALLS += target
 }
+
+#opencv config
+#INCLUDEPATH +=-L $$PWD/../Face/inc/opencv/include \
+#                 $$PWD/../Face/inc/opencv/include/opencv \
+#                 $$PWD/../Face/inc/opencv/include/opencv2
+INCLUDEPATH +=-L $$PWD/inc/opencv/include \
+                 $$PWD/inc/opencv/include/opencv \
+                 $$PWD/inc/opencv/include/opencv2
+
+LIBS += $$PWD/lib/opencv/libopencv_*.dll.a
+
+#AirFace CONFIG
+INCLUDEPATH += -L $$PWD/../Face/inc/airface
+
+LIBS += $$PWD/lib/airface/libarcsoft_face_engine.lib
+

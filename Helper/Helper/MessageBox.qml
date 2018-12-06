@@ -10,6 +10,7 @@
 
 import QtQuick 2.10
 import QtQuick.Controls 2.3
+import QtQuick.Controls.Material 2.2
 /**
  * @ClassName: MessageBox
  * @Description: 消息提示框
@@ -20,13 +21,27 @@ import QtQuick.Controls 2.3
  * @update_time
 **/
 
-Popup { //消息弹窗
-    x: parent.width * 0.2
-    y: parent.height * 0.2
-    width: parent.width * 0.6
-    height: parent.height * 0.6
-    modal: true
-    focus: true
-    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+Item {
+
+    function openBox(){
+        popup.open()
+    }
+
+    function closeBox(){
+        popup.close()
+    }
+
+    Popup { //消息弹窗
+        id: popup
+        x: parent.width * 0.2
+        y: parent.height * 0.2
+        width: parent.width * 0.6
+        height: parent.height * 0.6
+        modal: true
+        focus: true
+        closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
+    }
 }
+
+
 

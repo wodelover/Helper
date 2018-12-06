@@ -29,12 +29,6 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../Face/release/ -lFace
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../Face/debug/ -lFace
-else:unix: LIBS += -L$$OUT_PWD/../Face/ -lFace
-INCLUDEPATH += $$PWD/../Face
-DEPENDPATH += $$PWD/../Face
-
 #系统配置文件
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../ProcessIni/release/ -lProcessIni
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../ProcessIni/debug/ -lProcessIni
@@ -58,3 +52,15 @@ DEPENDPATH += $$PWD/../LanguageTranslator
 
 HEADERS += \
     initregister.h
+
+#人脸识别库
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../Face/release/ -lFace
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../Face/debug/ -lFace
+else:unix: LIBS += -L$$OUT_PWD/../Face/ -lFace
+INCLUDEPATH += $$PWD/../Face
+DEPENDPATH += $$PWD/../Face
+#opencv config,不知道为啥一定要在这里配置一次，真的奇怪
+INCLUDEPATH +=-L $$PWD/../Face/inc/opencv/include \
+                 $$PWD/../Face/inc/opencv/include/opencv \
+                 $$PWD/../Face/inc/opencv/include/opencv2
+LIBS += $$PWD/../Face/lib/opencv/libopencv_*.dll.a

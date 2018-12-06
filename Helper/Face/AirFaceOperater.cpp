@@ -172,23 +172,23 @@ float AirFaceOperater::FaceComparison(Mat *srcImg, Mat *dstImg,bool mutilpCompar
 vector<int> AirFaceOperater::GetAges(char *imgPath)
 {
     Mat img = imread(imgPath);
-    return GetAges(img);
+    return GetAges(&img);
 }
 
-vector<int> AirFaceOperater::GetAges(Mat &img)
+vector<int> AirFaceOperater::GetAges(Mat *img)
 {
     vector<int> ages;
-    if(RectificationImage(&img)){
+    if(RectificationImage(img)){
         MInt32 processMask = ASF_AGE;
         ASF_MultiFaceInfo detectedFaces = { nullptr,nullptr,0};
         //1、首先检测人脸
-        res = ASFDetectFaces(handle, img.cols, img.rows , ASVL_PAF_RGB24_B8G8R8, static_cast<MUInt8*>(img.data),&detectedFaces);
+        res = ASFDetectFaces(handle, img->cols, img->rows , ASVL_PAF_RGB24_B8G8R8, static_cast<MUInt8*>(img->data),&detectedFaces);
         if(res != MOK){
             printf("Detect Faces Fail:%d\n",res);
             return ages;
         }
         //2、初始化人脸信息
-        res = ASFProcess(handle, img.cols, img.rows, ASVL_PAF_RGB24_B8G8R8, static_cast<MUInt8*>(img.data), &detectedFaces, processMask);
+        res = ASFProcess(handle, img->cols, img->rows, ASVL_PAF_RGB24_B8G8R8, static_cast<MUInt8*>(img->data), &detectedFaces, processMask);
         if (res != MOK){//初始化人脸信息失败
             printf("Face Process fail: %d\n", res);
         }
@@ -212,23 +212,23 @@ vector<int> AirFaceOperater::GetAges(Mat &img)
 vector<int> AirFaceOperater::GetGender(char *imgPath)
 {
     Mat img = imread(imgPath);
-    return GetGender(img);
+    return GetGender(&img);
 }
 
-vector<int> AirFaceOperater::GetGender(Mat &img)
+vector<int> AirFaceOperater::GetGender(Mat *img)
 {
     vector<int> gender;
-    if(RectificationImage(&img)){
+    if(RectificationImage(img)){
         MInt32 processMask = ASF_GENDER;
         ASF_MultiFaceInfo detectedFaces = { nullptr,nullptr,0};
         //1、首先检测人脸
-        res = ASFDetectFaces(handle, img.cols, img.rows , ASVL_PAF_RGB24_B8G8R8, static_cast<MUInt8*>(img.data),&detectedFaces);
+        res = ASFDetectFaces(handle, img->cols, img->rows , ASVL_PAF_RGB24_B8G8R8, static_cast<MUInt8*>(img->data),&detectedFaces);
         if(res != MOK){
             printf("Detect Faces Fail:%d\n",res);
             return gender;
         }
         //2、初始化人脸信息
-        res = ASFProcess(handle, img.cols, img.rows, ASVL_PAF_RGB24_B8G8R8, static_cast<MUInt8*>(img.data), &detectedFaces, processMask);
+        res = ASFProcess(handle, img->cols, img->rows, ASVL_PAF_RGB24_B8G8R8, static_cast<MUInt8*>(img->data), &detectedFaces, processMask);
         if (res != MOK){//初始化人脸信息失败
             printf("Face Process fail: %d\n", res);
         }
